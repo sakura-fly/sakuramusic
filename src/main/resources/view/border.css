@@ -1,0 +1,26 @@
+#left {
+    /*-fx-background-color: #6cf;*/
+    /*-fx-padding: 10;*/
+}
+
+#orderList {
+    -fx-background-color: blanchedalmond;
+    /*-fx-border-color: #cc66cc;*/
+}
+
+#right {
+    -fx-background-color: #ccf;
+}
+
+#top {
+    -fx-background-color: #6ff;
+}
+
+#bottom {
+    -fx-background-color: #6c6;
+}
+
+#center {
+    -fx-background-color: #c6c;
+}
+

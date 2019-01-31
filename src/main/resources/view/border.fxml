@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import com.jfoenix.controls.JFXSlider?>
+<BorderPane prefHeight="510.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gao.controller.BorderController">
+    <stylesheets>
+        <URL value="@border.css"/>
+        <URL value="@../css/jfoenix-components.css"/>
+    </stylesheets>
+
+    <top>
+        <FlowPane fx:id="top" prefHeight="50.0" BorderPane.alignment="CENTER"/>
+        <!--<Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" onAction="#cl"/>-->
+    </top>
+    <center>
+        <FlowPane fx:id="center" BorderPane.alignment="CENTER"/>
+    </center>
+
+
+    <left>
+        <VBox fx:id="left" prefWidth="200.0">
+            <JFXListView fx:id="orderList"  VBox.vgrow="ALWAYS">
+
+            </JFXListView>
+            <Label text="233" />
+            <Label text="233" />
+        </VBox>
+    </left>
+
+    <bottom>
+        <HBox fx:id="bottom" prefHeight="50.0" BorderPane.alignment="CENTER" alignment="CENTER_LEFT">
+
+            <ImageView fx:id="pre" fitWidth="40" fitHeight="40" onMouseClicked="#preBtn">
+                <Image url="@../img/logo.png"/>
+
+            </ImageView>
+
+            <ImageView fx:id="play" fitWidth="40" fitHeight="40" onMouseClicked="#playBtn">
+                <Image url="@../img/logo.png"/>
+
+            </ImageView>
+
+            <ImageView fx:id="next" fitWidth="40" fitHeight="40" onMouseClicked="#nextBtn">
+                <Image url="@../img/logo.png"/>
+
+            </ImageView>
+            <JFXSlider HBox.hgrow="ALWAYS" fx:id="jd" value="0" >
+
+            </JFXSlider>
+
+        </HBox>
+
+    </bottom>
+
+</BorderPane>
