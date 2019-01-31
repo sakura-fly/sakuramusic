@@ -1,9 +1,11 @@
 package com.gao.controller;
 
 import com.gao.model.Order;
-import com.jfoenix.controls.JFXListCell;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXSlider;
+import com.gao.model.Song;
+import com.jfoenix.controls.*;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,7 +23,7 @@ public class BorderController {
     @FXML
     private HBox bottom;
     @FXML
-    private FlowPane center;
+    private VBox center;
     @FXML
     private VBox left;
 
@@ -33,22 +35,23 @@ public class BorderController {
 
     @FXML
     private JFXListView<Order> orderList;
-    // @FXML
-    // FlowPane right;
+
+    @FXML
+    private JFXTreeTableView<Song> songTable;
+
+    @FXML
+    private JFXTextField songFilter;
+
     private ObservableList<Order> l = FXCollections.observableArrayList();
 
+    private ObservableList<Song> sl = FXCollections.observableArrayList();
 
-    public void cl() {
-        System.out.println(233);
-        l.add(new Order(System.currentTimeMillis() + ""));
-    }
 
     @FXML
     private void initialize() {
 
 
-
-        for (int i = 0; i < 20; i++){
+        for (int i = 0; i < 5; i++) {
             l.add(new Order("item" + i));
         }
 
@@ -71,21 +74,103 @@ public class BorderController {
             System.out.println(newValue);
         });
 
+        initSongTable();
+
+        initSongFilter();
+
     }
 
     @FXML
-    public void nextBtn(){
+    public void nextBtn() {
         System.out.println("next");
     }
 
     @FXML
-    public void preBtn(){
+    public void preBtn() {
         System.out.println("pre");
     }
 
     @FXML
-    public void playBtn(){
+    public void playBtn() {
         System.out.println("play");
     }
+
+
+    private void initSongTable() {
+        for (int i = 0; i < 6; i++) {
+            sl.add(new Song("title" + i, "album" + i, i, "songer" + i));
+        }
+
+
+        songTable.setRoot(new RecursiveTreeItem<>(sl, RecursiveTreeObject::getChildren));
+
+
+        JFXTreeTableColumn<Song, String> titleColumn = new JFXTreeTableColumn<>("标题");
+        titleColumn.setCellValueFactory(param -> {
+            if (titleColumn.validateValue(param) && param.getValue().getValue() != null) {
+                return param.getValue().getValue().titleProperty();
+            } else {
+                return titleColumn.getComputedValue(param);
+            }
+        });
+
+
+        JFXTreeTableColumn<Song, String> songerColumn = new JFXTreeTableColumn<>("歌手");
+        songerColumn.setCellValueFactory(param -> {
+            if (songerColumn.validateValue(param) && param.getValue().getValue() != null) {
+                return param.getValue().getValue().songerProperty();
+            } else {
+                return songerColumn.getComputedValue(param);
+            }
+        });
+
+
+        JFXTreeTableColumn<Song, String> albumColumn = new JFXTreeTableColumn<>("专辑");
+        albumColumn.setCellValueFactory(param -> {
+            if (albumColumn.validateValue(param) && param.getValue().getValue() != null) {
+                return param.getValue().getValue().albumProperty();
+            } else {
+                return albumColumn.getComputedValue(param);
+            }
+        });
+
+
+        JFXTreeTableColumn<Song, String> ltimeColumn = new JFXTreeTableColumn<>("时长");
+        ltimeColumn.setCellValueFactory(param -> {
+            if (ltimeColumn.validateValue(param) && param.getValue().getValue() != null) {
+                return new SimpleStringProperty(String.valueOf(param.getValue().getValue().getLtime()));
+            } else {
+                return ltimeColumn.getComputedValue(param);
+            }
+        });
+
+
+        songTable.getColumns().addAll(titleColumn, songerColumn, albumColumn, ltimeColumn);
+
+        songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println(newValue.getValue().getTitle());
+
+        });
+
+
+    }
+
+    private void initSongFilter() {
+        songFilter.textProperty().addListener((observable, oldValue, newValue) -> {
+            // ObservableList<Song> s2 = FXCollections.observableArrayList();
+            // s2.add(new Song("c", "", 1, ""));
+            // sl.clear();
+            // sl.addAll(s2);
+
+
+            songTable.setPredicate(songTreeItem -> {
+                final Song s = songTreeItem.getValue();
+                return s.getTitle().contains(newValue) ||
+                        s.getSonger().contains(newValue)||
+                        s.getAlbum().contains(newValue);
+            });
+        });
+    }
+
 
 }
