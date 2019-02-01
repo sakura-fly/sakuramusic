@@ -13,6 +13,7 @@
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TextField?>
 <BorderPane prefHeight="510.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gao.controller.BorderController">
     <stylesheets>
@@ -21,7 +22,9 @@
     </stylesheets>
 
     <top>
-        <FlowPane fx:id="top" prefHeight="50.0" BorderPane.alignment="CENTER"/>
+        <HBox fx:id="top" prefHeight="50.0" BorderPane.alignment="CENTER" alignment="CENTER_LEFT">
+            <TextField promptText="搜索" fx:id="search"/>
+        </HBox>
         <!--<Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" onAction="#cl"/>-->
     </top>
     <center>

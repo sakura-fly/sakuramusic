@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,7 +24,7 @@ public class BorderController {
 
 
     @FXML
-    private FlowPane top;
+    private HBox top;
     @FXML
     private HBox bottom;
     @FXML
@@ -44,6 +46,9 @@ public class BorderController {
 
     @FXML
     private JFXTextField songFilter;
+
+    @FXML
+    private TextField search;
 
     private ObservableList<Order> l = FXCollections.observableArrayList();
 
@@ -83,6 +88,8 @@ public class BorderController {
         initSongTable();
 
         initSongFilter();
+
+        initSearch();
 
     }
 
@@ -172,6 +179,15 @@ public class BorderController {
                         s.getSonger().contains(newValue)||
                         s.getAlbum().contains(newValue);
             });
+        });
+    }
+
+
+    private void initSearch(){
+        search.setOnKeyReleased(event -> {
+            if (event.getCode() == KeyCode.ENTER){
+                System.out.println(search.getText());
+            }
         });
     }
 
