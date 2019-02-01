@@ -3,13 +3,13 @@ package com.gao.model;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.*;
 
-public class Song extends RecursiveTreeObject<Song> {
+public class SSong extends RecursiveTreeObject<SSong> {
     private StringProperty title;
     private StringProperty album;
     private DoubleProperty ltime;
     private StringProperty songer;
 
-    public Song(String title, String album, double ltime, String songer) {
+    public SSong(String title, String album, double ltime, String songer) {
         this.title = new SimpleStringProperty(title);
         this.album = new SimpleStringProperty(album);
         this.ltime = new SimpleDoubleProperty(ltime);
