@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import jdk.nashorn.internal.objects.NativeJava;
 
 
 public class BorderController {
@@ -151,22 +152,8 @@ public class BorderController {
 
         songTable.getColumns().addAll(titleColumn, songerColumn, albumColumn, ltimeColumn);
 
-        // songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-        //     System.out.println(newValue.getValue().getTitle());
-        //
-        // });
+        songTable.setRowFactory(param -> new rc());
 
-        // titleColumn.set
-
-
-
-        songTable.setOnMouseClicked(event -> {
-            System.out.println(songTable.getSelectionModel().getSelectedItem().getValue());
-            // Node node = event.getPickResult().getIntersectedNode();
-            // // System.out.println(node);
-            // JFXTreeTableRow<Song> nodd = (JFXTreeTableRow<Song>) node;
-            // System.out.println(nodd.getText());
-        });
 
 
     }
@@ -188,5 +175,19 @@ public class BorderController {
         });
     }
 
+
+    private class rc extends JFXTreeTableRow<Song> {
+        rc() {
+            super();
+            setOnMouseClicked(event -> {
+                System.out.println(songTable.getCurrentItemsCount());
+                if (this.getIndex() < songTable.getCurrentItemsCount()){
+
+                    System.out.println(songTable.getSelectionModel().getSelectedItem().getValue());
+                }
+                System.out.println(this.getIndex());
+            });
+        }
+    }
 
 }

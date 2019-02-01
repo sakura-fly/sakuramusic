@@ -24,9 +24,6 @@
     -fx-background-color: #c6c;
 }
 
-#songTable {
-    -fx-pref-width: 100%;
-}
 .tree-table-row-cell:odd{
     -fx-background-color: #eeeeee;
 }
