@@ -24,3 +24,19 @@
     -fx-background-color: #c6c;
 }
 
+#songTable {
+    -fx-pref-width: 100%;
+}
+.tree-table-row-cell:odd{
+    -fx-background-color: #eeeeee;
+}
+
+.tree-table-row-cell:hover{
+    -fx-background-color: #ddd;
+}
+
+.tree-table-row-cell:selected{
+    -fx-background-color: #aaa;
+}
+
+

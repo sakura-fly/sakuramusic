@@ -9,6 +9,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -49,6 +51,9 @@ public class BorderController {
 
     @FXML
     private void initialize() {
+
+
+
 
 
         for (int i = 0; i < 5; i++) {
@@ -97,14 +102,12 @@ public class BorderController {
 
 
     private void initSongTable() {
+
+
         for (int i = 0; i < 6; i++) {
             sl.add(new Song("title" + i, "album" + i, i, "songer" + i));
         }
-
-
         songTable.setRoot(new RecursiveTreeItem<>(sl, RecursiveTreeObject::getChildren));
-
-
         JFXTreeTableColumn<Song, String> titleColumn = new JFXTreeTableColumn<>("标题");
         titleColumn.setCellValueFactory(param -> {
             if (titleColumn.validateValue(param) && param.getValue().getValue() != null) {
@@ -113,6 +116,7 @@ public class BorderController {
                 return titleColumn.getComputedValue(param);
             }
         });
+
 
 
         JFXTreeTableColumn<Song, String> songerColumn = new JFXTreeTableColumn<>("歌手");
@@ -147,9 +151,21 @@ public class BorderController {
 
         songTable.getColumns().addAll(titleColumn, songerColumn, albumColumn, ltimeColumn);
 
-        songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(newValue.getValue().getTitle());
+        // songTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        //     System.out.println(newValue.getValue().getTitle());
+        //
+        // });
 
+        // titleColumn.set
+
+
+
+        songTable.setOnMouseClicked(event -> {
+            System.out.println(songTable.getSelectionModel().getSelectedItem().getValue());
+            // Node node = event.getPickResult().getIntersectedNode();
+            // // System.out.println(node);
+            // JFXTreeTableRow<Song> nodd = (JFXTreeTableRow<Song>) node;
+            // System.out.println(nodd.getText());
         });
 
 

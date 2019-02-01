@@ -16,8 +16,8 @@
 <BorderPane prefHeight="510.0" prefWidth="719.0" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gao.controller.BorderController">
     <stylesheets>
-        <URL value="@border.css"/>
         <URL value="@../css/jfoenix-components.css"/>
+        <URL value="@border.css"/>
     </stylesheets>
 
     <top>
@@ -27,7 +27,7 @@
     <center>
         <VBox fx:id="center" BorderPane.alignment="CENTER">
             <JFXTextField promptText="搜索" fx:id="songFilter"/>
-            <JFXTreeTableView fx:id="songTable" showRoot="false" VBox.vgrow="ALWAYS">
+            <JFXTreeTableView fx:id="songTable" showRoot="false" VBox.vgrow="ALWAYS" >
 
 
 
